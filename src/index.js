@@ -22,7 +22,7 @@ search.addEventListener('input', debounce((e) => {
           methodProperties: {
             CityName: e.target.value,
             "SettlementRef": '',
-            Limit: 5
+            Limit: 10
           },
           apiKey: 'c1be1e4c0916d85cce43b88f2a0a9fd1'
         }),
@@ -65,8 +65,47 @@ search.addEventListener('input', debounce((e) => {
 
 console.log(search.value);
 
+let cityRef = '';
+
+search.addEventListener('change', () => {
+  console.log(search.value)
+
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: 'https://api.novaposhta.ua/v2.0/json/',
+    data: JSON.stringify({
+      modelName: 'Address',
+      calledMethod: 'searchSettlements',
+      methodProperties: {
+        CityName: search.value,
+        Limit: 10
+      },
+      apiKey: 'c1be1e4c0916d85cce43b88f2a0a9fd1'
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    xhrFields: {
+      withCredentials: false 
+    },
+    success: function whatRef (texts) {
+        
+      console.log(texts);
+      cityRef = texts.data[0].Addresses[0].Ref;
+      console.log(cityRef);
+
+      return cityRef;
+    }
+  })
+})
+
+
 street.addEventListener('input', debounce((e) => {
   // console.log(e.target.value);
+  console.log('Тест', search.value)
+  console.log(cityRef)
+
   $.ajax({
       type: 'POST',
       dataType: 'json',
@@ -76,8 +115,9 @@ street.addEventListener('input', debounce((e) => {
         calledMethod: 'searchSettlementStreets',
         methodProperties: {
           StreetName: e.target.value,
-          SettlementRef: 'e718a680-4b33-11e4-ab6d-005056801329',
-          Limit: 5
+          SettlementRef: cityRef,
+          languages: 'ru',
+          Limit: 10
         },
         apiKey: 'c1be1e4c0916d85cce43b88f2a0a9fd1'
       }),
@@ -96,11 +136,11 @@ street.addEventListener('input', debounce((e) => {
 
         $( function() {
           let availableTags = [];
-          let result = available(availableTags, arr);
-          console.log(result)
+          let resultStreet = available(availableTags, arr);
+          console.log(resultStreet)
       
           $( "#tagsStreet" ).autocomplete({
-            source: result
+            source: resultStreet
           });
       });
       
@@ -114,4 +154,4 @@ street.addEventListener('input', debounce((e) => {
       },
     });
 
-}, 300))
+}, 100))
