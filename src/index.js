@@ -47,7 +47,7 @@ cityForm.addEventListener('input', debounce((e) => {
         });
 
     }
-}, 300))
+}, 200))
 
 warehouseForm.addEventListener('input', debounce((e) => {
     axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
@@ -62,4 +62,4 @@ warehouseForm.addEventListener('input', debounce((e) => {
             warehouse_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.DescriptionRu}</li>`);
         })
     })
-}, 300))
+}, 200))
