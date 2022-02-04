@@ -27,15 +27,18 @@
    
 
     <div>
-      <input type="text" id="city" class="form-control" autocomplete="off" style="width: 400px">
 
-      <div id="city_autocomplete">
+      <div style="position: relative; margin-bottom: 20px;">
+        <input type="text" id="city" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите город">
+        <ul id="city_autocomplete"></ul>
       </div>
 
-      <input type="text" id="warehouse" class="form-control" autocomplete="off" style="width: 400px">
+    <div style="position: relative; margin-bottom: 20px;">
+      <input type="text" id="warehouse" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите адрес или номер отделения">
 
-      <div id="warehouse_autocomplete">
-      </div>
+      <ul id="warehouse_autocomplete"></ul>
+    </div>
+
     </div>
   </body>
 </html>
