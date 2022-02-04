@@ -30,6 +30,7 @@ cityForm.addEventListener('input', debounce((e) => {
 
     if (!e.target.value.length) {
         city_autocomplete.innerHTML = '';
+        warehouse_autocomplete.innerHTML = '';
         city_autocomplete.classList.remove('active');
     }
 
