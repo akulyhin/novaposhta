@@ -10,6 +10,8 @@ const cityForm = document.getElementById('city');
 const city_autocomplete = document.getElementById('city_autocomplete');
 const warehouseForm = document.getElementById('warehouse');
 const warehouse_autocomplete = document.getElementById('warehouse_autocomplete');
+const addressForm = document.getElementById('address');
+const address_autocomplete = document.getElementById('address_autocomplete');
 
 let cityRef = '';
 
@@ -17,6 +19,12 @@ warehouse_autocomplete.addEventListener('click', (e) => {
     warehouseForm.value = e.target.innerText;
     warehouse_autocomplete.innerHTML = '';
     warehouse_autocomplete.classList.remove('active');
+});
+
+address_autocomplete.addEventListener('click', (e) => {
+    addressForm.value = e.target.innerText;
+    address_autocomplete.innerHTML = '';
+    address_autocomplete.classList.remove('active');
 });
 
 city_autocomplete.addEventListener('click', (e) => {
@@ -30,6 +38,8 @@ cityForm.addEventListener('input', debounce((e) => {
 
     if (!e.target.value.length) {
         city_autocomplete.innerHTML = '';
+        warehouseForm.value = '';
+        addressForm.value = '';
         warehouse_autocomplete.innerHTML = '';
         warehouse_autocomplete.classList.remove('active');
         city_autocomplete.classList.remove('active');
@@ -57,11 +67,26 @@ warehouseForm.addEventListener('input', debounce((e) => {
         "query": e.target.value
     })
     .then(res => {
-        console.log(res.data.data);
         warehouse_autocomplete.innerHTML = '';
         warehouse_autocomplete.classList.add('active');
         res.data.data.forEach(item => {
             warehouse_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.DescriptionRu}</li>`);
+        })
+    })
+}, 200))
+
+
+
+addressForm.addEventListener('input', debounce((e) => {
+    axios.post(`${workHost}/api/novaposhta/getAddress`, {
+        "Ref": cityRef,
+        "query": e.target.value
+    })
+    .then(res => {
+        address_autocomplete.innerHTML = '';
+        address_autocomplete.classList.add('active');
+        res.data.data.forEach(item => {
+            address_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.StreetsType} ${item.Description}</li>`);
         })
     })
 }, 200))
