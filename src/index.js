@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
+const newServer = 'http://159.224.166.89';
 
 const cityForm = document.getElementById('city');
 const city_autocomplete = document.getElementById('city_autocomplete');
@@ -46,7 +47,7 @@ cityForm.addEventListener('input', debounce((e) => {
     }
 
     if (e.target.value.length > 2) {
-        axios.post(`${workHost}/api/novaposhta/getCities`, {
+        axios.post(`${newServer}/api/novaposhta/getCities`, {
             "query": e.target.value
         })
         .then(res => {
@@ -62,7 +63,7 @@ cityForm.addEventListener('input', debounce((e) => {
 }, 200))
 
 warehouseForm.addEventListener('input', debounce((e) => {
-    axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
+    axios.post(`${newServer}/api/novaposhta/getWarehouses`, {
         "Ref": cityRef,
         "query": e.target.value
     })
@@ -78,7 +79,7 @@ warehouseForm.addEventListener('input', debounce((e) => {
 
 
 addressForm.addEventListener('input', debounce((e) => {
-    axios.post(`${workHost}/api/novaposhta/getAddress`, {
+    axios.post(`${newServer}/api/novaposhta/getAddress`, {
         "Ref": cityRef,
         "query": e.target.value
     })
