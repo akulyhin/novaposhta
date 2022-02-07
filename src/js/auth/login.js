@@ -30,7 +30,7 @@ const password_block = document.querySelector('.password-block');
 
 email_input.addEventListener('input', debounce((e) => {
 
-axios.post(`${testHost}/auth/getUser`, {
+axios.post(`${workHost}/auth/getUser`, {
     "email": e.target.value
 })
 .then(res => {
