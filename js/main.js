@@ -15,9 +15,11 @@ axios.get(`${workHost}/auth/auth`, {
 })
 .catch(err => {
     console.log(err);
-    window.location.href = '/login.html';
+    // window.location.href = '/login.html';
     document.querySelector('body').innerHTML = '<h1>Пошел нахуй!</h1>'
 });
+
+console.log(window.location);
 
 const cityForm = document.getElementById('city');
 const city_autocomplete = document.getElementById('city_autocomplete');
