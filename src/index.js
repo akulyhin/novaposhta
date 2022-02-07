@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
+const newServer = 'http://159.224.166.89';
 
 const cityForm = document.getElementById('city');
 const city_autocomplete = document.getElementById('city_autocomplete');
