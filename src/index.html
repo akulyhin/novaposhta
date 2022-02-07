@@ -24,22 +24,18 @@
     <!-- inject:css -->
     <!-- endinject -->
 
-    <style>
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    </style>
 
   </head>
 
   <body>
-
+    <header>
+      <div class="header">
+        <button class="btn btn-primary" id="logout">Выйти</button>
+      </div>
+    </header>
     
-    <div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div>
 
       <div style="position: relative; margin-bottom: 20px;">
         <input type="text" id="city" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите город">
@@ -59,7 +55,7 @@
         <ul id="address_autocomplete"></ul>
       </div>
 
-
+    </div>
 
     </div>
     
