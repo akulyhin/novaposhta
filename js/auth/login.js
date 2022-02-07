@@ -27,9 +27,10 @@ let authRequest = '';
 
 const email_input = document.getElementById('email_input');
 const password_block = document.querySelector('.password-block');
+
 email_input.addEventListener('input', debounce((e) => {
 
-axios.post(`${workHost}/auth/getUser`, {
+axios.post(`${testHost}/auth/getUser`, {
     "email": e.target.value
 })
 .then(res => {
@@ -50,6 +51,9 @@ axios.post(`${workHost}/auth/getUser`, {
       </div><button class="btn btn-primary" type="submit">Регистрация</button>`);
 
       authRequest = 'register';
+    }
+    else {
+        password_block.innerHTML = '';
     }
 })
 .catch(err => console.log(err))
