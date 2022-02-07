@@ -45,7 +45,7 @@ cityForm.addEventListener('input', debounce((e) => {
         city_autocomplete.classList.remove('active');
     }
 
-    if (e.target.value.length > 2) {
+    if (e.target.value.length) {
         axios.post(`${workHost}/api/novaposhta/getCities`, {
             "query": e.target.value
         })
@@ -62,31 +62,46 @@ cityForm.addEventListener('input', debounce((e) => {
 }, 200))
 
 warehouseForm.addEventListener('input', debounce((e) => {
-    axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
-        "Ref": cityRef,
-        "query": e.target.value
-    })
-    .then(res => {
+    if (!e.target.value.length) {
         warehouse_autocomplete.innerHTML = '';
-        warehouse_autocomplete.classList.add('active');
-        res.data.data.forEach(item => {
-            warehouse_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.DescriptionRu}</li>`);
+        warehouse_autocomplete.classList.remove('active');
+    }
+
+    else {
+        axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
+            "Ref": cityRef,
+            "query": e.target.value
         })
-    })
+        .then(res => {
+            warehouse_autocomplete.innerHTML = '';
+            warehouse_autocomplete.classList.add('active');
+            res.data.data.forEach(item => {
+                warehouse_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.DescriptionRu}</li>`);
+            })
+        })
+    }
 }, 200))
 
 
 
 addressForm.addEventListener('input', debounce((e) => {
-    axios.post(`${workHost}/api/novaposhta/getAddress`, {
-        "Ref": cityRef,
-        "query": e.target.value
-    })
-    .then(res => {
+    if (!e.target.value.length) {
         address_autocomplete.innerHTML = '';
-        address_autocomplete.classList.add('active');
-        res.data.data.forEach(item => {
-            address_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.StreetsType} ${item.Description}</li>`);
+        address_autocomplete.classList.remove('active');
+        console.log('test');
+    }
+
+    else {
+        axios.post(`${workHost}/api/novaposhta/getAddress`, {
+            "Ref": cityRef,
+            "query": e.target.value
         })
-    })
+        .then(res => {
+            address_autocomplete.innerHTML = '';
+            address_autocomplete.classList.add('active');
+            res.data.data.forEach(item => {
+                address_autocomplete.insertAdjacentHTML('beforeend', `<li>${item.StreetsType} ${item.Description}</li>`);
+            })
+        })
+    }
 }, 200))
