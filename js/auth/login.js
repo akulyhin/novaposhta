@@ -5,6 +5,20 @@ const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
 const newServer = 'http://159.224.166.89';
 
+axios.get(`${workHost}/auth/auth`, {
+    headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+})
+.then(res => {
+    if (res.data.status === 'success') {
+        window.location.href = '/novaposhta';
+    }
+})
+.catch(err => {
+    console.log(err);
+});
+
 login_form.addEventListener('submit', function(e) {
     e.preventDefault();
 
