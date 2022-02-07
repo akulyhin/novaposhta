@@ -118,3 +118,23 @@ addressForm.addEventListener('input', debounce((e) => {
         })
     }
 }, 200))
+
+
+const logout = document.getElementById('logout');
+
+logout.addEventListener('click', (e) => {
+
+    axios.get(`${workHost}/auth/logout`, {
+        headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+    .then(res => {
+        console.log(res);
+        if (res.status === 204) {
+            localStorage.removeItem('token');
+            window.location.href = `${window.location.href}login.html`;
+        }
+    })
+    .catch(err => console.log(err)) 
+})
