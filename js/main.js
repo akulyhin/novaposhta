@@ -10,11 +10,12 @@ axios.get(`${workHost}/auth/auth`, {
 })
 .then(res => {
     if (res.data.status === 'success') {
-
+        console.log(res.data);
     }
 })
 .catch(err => {
     console.log(err);
+    window.location.href = '/login.html';
     document.querySelector('body').innerHTML = '<h1>Пошел нахуй!</h1>'
 });
 
