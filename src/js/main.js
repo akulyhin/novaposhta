@@ -1,7 +1,24 @@
 
+
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
 const newServer = 'http://159.224.166.89';
+
+
+axios.get(`${testHost}/auth/auth`, {
+    headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+})
+.then(res => {
+    if (res.data.status === 'success') {
+
+    }
+})
+.catch(err => {
+    console.log(err);
+    document.querySelector('body').innerHTML = '<h1>Пошел нахуй!</h1>'
+});
 
 const cityForm = document.getElementById('city');
 const city_autocomplete = document.getElementById('city_autocomplete');

@@ -1,0 +1,27 @@
+#login {
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, .25);
+    padding: 50px 25px;
+}
+
+.password {
+    position: relative;
+}
+
+#password-input {
+    position: relative;
+    z-index: 1;
+}
+
+.password-control {
+	position: absolute;
+	top: 11px;
+	right: 6px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url('../../images/view.svg') 0 0 no-repeat;
+    z-index: 2;
+}
+.password-control.view {
+	background: url('../../images/no-view.svg') 0 0 no-repeat;
+}

@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" href="./images/favicon.png">
     <meta property="og:image" content="https://eplace.com.ua/images/eplace-slogan.jpg">
 
-    <title>Api Новая почта</title>
+    <title>Авторизация</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -20,9 +20,7 @@
 
 
 
-    <!-- Сюда будет всталена ссылка на файл стилей -->
-    <!-- inject:css -->
-    <!-- endinject -->
+    <link rel="stylesheet" href="./css/styles.css">
 
     <style>
       body {
@@ -38,34 +36,25 @@
 
   <body>
 
-    
-    <div>
-
-      <div style="position: relative; margin-bottom: 20px;">
-        <input type="text" id="city" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите город">
-        <ul id="city_autocomplete"></ul>
-      </div>
-
-      <div style="position: relative; margin-bottom: 20px;">
-        <input type="text" id="warehouse" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите адрес или номер отделения">
-
-        <ul id="warehouse_autocomplete"></ul>
-      </div>
-
-
-      <div style="position: relative; margin-bottom: 20px;">
-        <input type="text" id="address" class="form-control" autocomplete="off" style="width: 400px" placeholder="Введите адрес">
-
-        <ul id="address_autocomplete"></ul>
-      </div>
+   
 
 
 
+    <div id="login">
+        <form id="register_form">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                <input type="text" class="form-control" placeholder="email" name="email" aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3 password">
+                <span class="input-group-text" id="basic-addon2"><i class="fas fa-unlock"></i></span>
+                <input type="password" class="form-control" placeholder="password" id="password-input" name="password" aria-describedby="basic-addon2">
+                <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+              </div>
+              <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+        </form>
+        <div id="success_message"></div>
     </div>
-    
-
-
-
 
 
 
@@ -75,7 +64,23 @@
 
     
 //= html/footer.html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://unpkg.com/lodash.debounce@4.0.8/index.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="module" src="./js/main.js"></script>
 
+<script>
+    function show_hide_password(target){
+	var input = document.getElementById('password-input');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./js/auth/register.js"></script>
+
+</body>
+</html>
