@@ -1,7 +1,3 @@
-import './sass/styles.scss';
-import axios from 'axios';
-import debounce from 'lodash.debounce';
-
 
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
