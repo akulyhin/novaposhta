@@ -19,9 +19,13 @@ login_form.addEventListener('submit', function(e) {
 
         if (res.data.token) {
             localStorage.setItem('token', res.data.token);
-            window.location.href = '/';
+            window.location.href = '/novaposhta';
         }
+
+        
         
     })
     .catch(err => console.log(err))
 })
+
+console.log(window.location);
