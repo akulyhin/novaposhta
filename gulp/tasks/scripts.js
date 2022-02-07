@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const plumber = require('gulp-plumber');
+// const plumber = require('gulp-plumber');
 // const babel = require('gulp-babel');
 // const uglify = require('gulp-uglify');
 // const concat = require('gulp-concat');
@@ -9,7 +9,7 @@ const paths = require('../paths');
 const scripts = () => {
   return gulp
     .src(paths.src.js)
-    .pipe(plumber())
+    // .pipe(plumber())
     // .pipe(babel())
     // .pipe(concat('scripts.js'))
     // .pipe(mode.production(uglify()))
