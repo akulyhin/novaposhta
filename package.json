@@ -51,5 +51,7 @@
     "axios": "^0.21.4",
     "lodash.debounce": "^4.0.8"
   },
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
 }
