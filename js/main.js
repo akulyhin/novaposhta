@@ -60,7 +60,7 @@ cityForm.addEventListener('input', debounce((e) => {
     }
 
     if (e.target.value.length) {
-        axios.post(`${workHost}/api/novaposhta/getCities`, {
+        axios.post(`${testHost}/api/novaposhta/getCities`, {
             "query": e.target.value
         })
         .then(res => {
@@ -84,7 +84,7 @@ warehouseForm.addEventListener('input', debounce((e) => {
     else {
         axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
             "Ref": cityRef,
-            "query": e.target.value
+            "query": e.target.value,
         })
         .then(res => {
             warehouse_autocomplete.innerHTML = '';
@@ -107,7 +107,7 @@ addressForm.addEventListener('input', debounce((e) => {
     else {
         axios.post(`${workHost}/api/novaposhta/getAddress`, {
             "Ref": cityRef,
-            "query": e.target.value
+            "query": e.target.value,
         })
         .then(res => {
             address_autocomplete.innerHTML = '';
