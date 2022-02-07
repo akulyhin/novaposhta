@@ -60,7 +60,7 @@ cityForm.addEventListener('input', debounce((e) => {
     }
 
     if (e.target.value.length) {
-        axios.post(`${testHost}/api/novaposhta/getCities`, {
+        axios.post(`${workHost}/api/novaposhta/getCities`, {
             "query": e.target.value
         })
         .then(res => {
