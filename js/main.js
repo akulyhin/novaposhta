@@ -3,20 +3,15 @@ const workHost = 'https://ak-np.herokuapp.com';
 const newServer = 'http://159.224.166.89';
 
 
+
 axios.get(`${workHost}/auth/auth`, {
     headers: {
         authorization: 'Bearer ' + localStorage.getItem('token')
     }
 })
-.then(res => {
-    if (res.data.status === 'success') {
-        console.log(res.data);
-    }
-})
+.then(res => res)
 .catch(err => {
-    console.log(err);
     window.location.href = `${window.location.href}login.html`;
-    document.querySelector('body').innerHTML = '<h1>Пошел нахуй!</h1>'
 });
 
 

@@ -17,7 +17,7 @@ register_form.addEventListener('submit', function(e) {
     .then(res => {
         if (res.data.user) {
             register_form.remove();
-            success_message.innerHTML = 'Пользователь успешно создан <br> <a href="/login.html">Войти</a>';
+            success_message.innerHTML = 'Пользователь успешно создан <br> <a href="/novaposhta/login.html">Войти</a>';
         }
     })
     .catch(err => console.log(err))
