@@ -54,7 +54,7 @@ axios.post(`${workHost}/auth/getUser`, {
 })
 .catch(err => console.log(err))
 
-}, 500))
+}, 600))
 
 login_form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -66,13 +66,10 @@ login_form.addEventListener('submit', function(e) {
          password: password.value       
     })
     .then(res => {
-        if (res.data.data.token) {
-            localStorage.setItem('token', res.data.token);
+        if (res.data.user.token) {
+            localStorage.setItem('token', res.data.user.token);
             window.location.href = '/novaposhta';
         }
-
-        
-        
     })
     .catch(err => console.log(err))
 })
