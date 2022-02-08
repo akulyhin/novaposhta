@@ -32,6 +32,9 @@ const headH4 = document.querySelector('#login h4');
 
 email_input.addEventListener('input', debounce((e) => {
 
+    success_message.classList.remove('error');
+    success_message.innerHTML = '';
+
 axios.post(`${workHost}/auth/getUser`, {
     "email": e.target.value
 })
@@ -65,7 +68,9 @@ axios.post(`${workHost}/auth/getUser`, {
         headH4.innerHTML = 'Авторизация';
     }
 })
-.catch(err => console.log(err))
+.catch(err => {
+    console.log(err);
+})
 
 }, 200))
 
@@ -84,5 +89,10 @@ login_form.addEventListener('submit', function(e) {
             window.location.href = '/novaposhta';
         }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        if (err.response.status === 401) {
+            success_message.classList.add('error');
+            success_message.innerHTML = 'Неверный пароль, повторите попытку!';
+        }
+    })
 })
