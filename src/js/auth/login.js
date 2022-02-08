@@ -27,6 +27,7 @@ let authRequest = '';
 
 const email_input = document.getElementById('email_input');
 const password_block = document.querySelector('.password-block');
+const auth_message = document.querySelector('.auth-message');
 
 email_input.addEventListener('input', debounce((e) => {
 
@@ -41,6 +42,7 @@ axios.post(`${workHost}/auth/getUser`, {
         <input type="password" class="form-control" placeholder="password" name="password" aria-describedby="basic-addon2" required>
       </div><button class="btn btn-primary" type="submit">Войти</button>`);
       authRequest = 'login';
+      auth_message.innerHTML = 'Ваш email есть в базе, введите пароль от своей учетной записи!'
     }
 
     else if (res.data.code === 404) {
@@ -51,14 +53,17 @@ axios.post(`${workHost}/auth/getUser`, {
       </div><button class="btn btn-primary" type="submit">Регистрация</button>`);
 
       authRequest = 'register';
+      auth_message.style.color = 'green';
+      auth_message.innerHTML = 'Вашего email нет базе, мы Вас зарегистрируем, придумайте пароль!';
     }
     else {
         password_block.innerHTML = '';
+        auth_message.innerHTML = 'Для авторизации или регистрации введите свой email';
     }
 })
 .catch(err => console.log(err))
 
-}, 600))
+}, 200))
 
 login_form.addEventListener('submit', function(e) {
     e.preventDefault();
