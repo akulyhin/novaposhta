@@ -14,7 +14,7 @@ if (localStorage.getItem('token')) {
     })
     .then(res => {
         if (res.data.status === 'success') {
-            window.location.href = '/';
+            window.location.href = '/novaposhta';
         }
     })
     .catch(err => {
@@ -86,7 +86,7 @@ login_form.addEventListener('submit', function(e) {
     .then(res => {
         if (res.data.user.token) {
             localStorage.setItem('token', res.data.user.token);
-            window.location.href = '/';
+            window.location.href = '/novaposhta';
         }
     })
     .catch(err => {

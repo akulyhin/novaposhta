@@ -2,7 +2,9 @@ const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
 const newServer = 'https://api.eplace.com.ua';
 
-
+if (!localStorage.getItem('token')) {
+    window.location.href = `${window.location.href}login.html`;
+}
 
 axios.get(`${newServer}/auth/auth`, {
     headers: {
@@ -96,7 +98,6 @@ addressForm.addEventListener('input', debounce((e) => {
     if (!e.target.value.length) {
         address_autocomplete.innerHTML = '';
         address_autocomplete.classList.remove('active');
-        console.log('test');
     }
 
     else {
