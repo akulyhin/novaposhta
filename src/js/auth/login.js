@@ -3,18 +3,18 @@ const success_message = document.getElementById('success_message');
 
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
-const newServer = 'http://159.224.166.89';
+const newServer = 'https://api.eplace.com.ua';
 
 
 if (localStorage.getItem('token')) {
-    axios.get(`${workHost}/auth/auth`, {
+    axios.get(`${newServer}/auth/auth`, {
         headers: {
             authorization: 'Bearer ' + localStorage.getItem('token')
         }
     })
     .then(res => {
         if (res.data.status === 'success') {
-            window.location.href = '/novaposhta';
+            window.location.href = '/';
         }
     })
     .catch(err => {
@@ -35,7 +35,7 @@ email_input.addEventListener('input', debounce((e) => {
     success_message.classList.remove('error');
     success_message.innerHTML = '';
 
-axios.post(`${workHost}/auth/getUser`, {
+axios.post(`${newServer}/auth/getUser`, {
     "email": e.target.value
 })
 .then(res => {
@@ -79,14 +79,14 @@ login_form.addEventListener('submit', function(e) {
 
     const {email, password} = this.elements;
 
-    axios.post(`${workHost}/auth/${authRequest}`, {
+    axios.post(`${newServer}/auth/${authRequest}`, {
         email: email.value,
          password: password.value       
     })
     .then(res => {
         if (res.data.user.token) {
             localStorage.setItem('token', res.data.user.token);
-            window.location.href = '/novaposhta';
+            window.location.href = '/';
         }
     })
     .catch(err => {
