@@ -1,10 +1,10 @@
 const testHost = 'http://localhost:3031';
 const workHost = 'https://ak-np.herokuapp.com';
-const newServer = 'http://159.224.166.89';
+const newServer = 'https://api.eplace.com.ua';
 
 
 
-axios.get(`${workHost}/auth/auth`, {
+axios.get(`${newServer}/auth/auth`, {
     headers: {
         authorization: 'Bearer ' + localStorage.getItem('token')
     }
@@ -55,7 +55,7 @@ cityForm.addEventListener('input', debounce((e) => {
     }
 
     if (e.target.value.length) {
-        axios.post(`${workHost}/api/novaposhta/getCities`, {
+        axios.post(`${newServer}/api/novaposhta/getCities`, {
             "query": e.target.value
         })
         .then(res => {
@@ -77,7 +77,7 @@ warehouseForm.addEventListener('input', debounce((e) => {
     }
 
     else {
-        axios.post(`${workHost}/api/novaposhta/getWarehouses`, {
+        axios.post(`${newServer}/api/novaposhta/getWarehouses`, {
             "Ref": cityRef,
             "query": e.target.value,
         })
@@ -100,7 +100,7 @@ addressForm.addEventListener('input', debounce((e) => {
     }
 
     else {
-        axios.post(`${workHost}/api/novaposhta/getAddress`, {
+        axios.post(`${newServer}/api/novaposhta/getAddress`, {
             "Ref": cityRef,
             "query": e.target.value,
         })
@@ -119,7 +119,7 @@ const logout = document.getElementById('logout');
 
 logout.addEventListener('click', (e) => {
 
-    axios.get(`${workHost}/auth/logout`, {
+    axios.get(`${newServer}/auth/logout`, {
         headers: {
             authorization: 'Bearer ' + localStorage.getItem('token')
         }
